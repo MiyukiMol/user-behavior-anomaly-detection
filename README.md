@@ -6,7 +6,7 @@ This project explores login-event data to investigate how user behavior analytic
 ## Project Structure
 - `01_exploratory_data_analysis.ipynb` — Exploratory Data Analysis (EDA) on login-event data
 - `02_rule_based_detection.ipynb` — Rule-based detection baseline
-- `03_supervised_anomaly_detection.ipynb` — Supervised ATO detection with CatBoost, cost-sensitive threshold optimization, and SHAP explainability ([GitHub Notebook](https://github.com/MiyukiMol/user-behavior-anomaly-detection/blob/main/03_supervised_anomaly_detection.ipynb))[cite: 2]
+- `03_supervised_anomaly_detection.ipynb` — Supervised ATO detection with CatBoost, cost-sensitive threshold optimization, and SHAP explainability (ciGitHub Notebook](https://github.com/MiyukiMol/user-behavior-anomaly-detection/blob/main/03_supervised_anomaly_detection.ipynb))
 
 ## Dataset
 **Login Data Set for Risk-Based Authentication (RBA)**
@@ -27,8 +27,8 @@ The following preliminary findings are based on an initial sample of 10,000 rows
 - **User activity:** The sample contains 4,743 unique users, with a highly right-skewed distribution of events per user.
 
 ## Modeling, Cost Optimization & Interpretability (`03_supervised_anomaly_detection.ipynb`)
-- **Model & Reproducibility:** Uses `CatBoostClassifier` with fixed tuned hyperparameters (`random_seed=42`, `early_stopping_rounds=50`) and handles categorical features natively alongside behavioral/contextual signals[cite: 2].
-- **Asymmetric Business Cost Framework:** Evaluates thresholds under asymmetric financial assumptions—**€30,000** per False Negative (missed ATO attack), **€30** per False Positive (customer friction / extra verification), and **€3** per True Positive (alert handling)[cite: 2].
+- **Model & Reproducibility:** Uses `CatBoostClassifier` with fixed tuned hyperparameters (`random_seed=42`, `early_stopping_rounds=50`) and handles categorical features natively alongside behavioral/contextual signals.
+- **Asymmetric Business Cost Framework:** Evaluates thresholds under asymmetric financial assumptions—**€30,000** per False Negative (missed ATO attack), **€30** per False Positive (customer friction / extra verification), and **€3** per True Positive (alert handling).
 - **Optimal Operating Point:** At probability threshold **0.7093** on the chronological test set (**40,029** events: **45** attacks, **39,984** legitimate logins), total expected business loss is minimized to **€101,232** (`FN = 1` → €30,000, `FP = 2,370` → €71,100, `TP = 44` → €132; capturing 44 of 45 attacks).
 - **Explainability (SHAP):** Uses `shap.TreeExplainer` to rank top features and visualize feature attributions via summary/beeswarm plots to support detection transparency, SOC triage, and governance.
 
@@ -37,7 +37,7 @@ The following preliminary findings are based on an initial sample of 10,000 rows
 - Failed logins do not necessarily indicate malicious activity; contextual and behavioral anomalies should be evaluated carefully.
 - Severe class imbalance means accuracy alone is insufficient; precision, recall, F1-score, confusion matrices, and business cost are evaluated.
 - Time-aware evaluation is used to prevent temporal leakage.
-- Cost parameters (€30,000 / €30 / €3) represent modeled business assumptions that should be calibrated with security, support, and risk stakeholders in production[cite: 2].
+- Cost parameters (€30,000 / €30 / €3) represent modeled business assumptions that should be calibrated with security, support, and risk stakeholders in production.
 
 ## Tools & Libraries
 - Python, pandas, NumPy, scikit-learn, CatBoost, SHAP, Matplotlib
@@ -54,7 +54,7 @@ If you use the Kaggle API, configure your credentials securely. Never commit API
 ## Project Status
 - [x] Exploratory data analysis
 - [x] Rule-based detection
-- [x] Supervised machine-learning anomaly detection, cost optimization & SHAP analysis[cite: 2]
+- [x] Supervised machine-learning anomaly detection, cost optimization & SHAP analysis
 
 ## References
 - Wiefling, S., et al. (2022). *Pump Up Password Security! Evaluating and Enhancing Risk-Based Authentication on a Real-World Large-Scale Online Service*. ACM Transactions on Privacy and Security. https://doi.org/10.1145/3546069
